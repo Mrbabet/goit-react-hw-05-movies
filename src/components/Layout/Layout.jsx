@@ -1,16 +1,16 @@
 import React, { Suspense } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import styles from "./Layout.module.css";
 
 const Layout = () => {
   return (
     <div className={styles.container}>
-      <header>
-        <div className="logo"></div>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/movies">Movies</Link>
+      <header className={styles.header}>
+        <div className="logo">Logo</div>
+        <nav className={styles.nav}>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/movies">Movies</NavLink>
         </nav>
       </header>
       <Suspense fallback={<Loader />}>
