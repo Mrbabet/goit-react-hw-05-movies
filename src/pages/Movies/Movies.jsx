@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { handleSearch } from "../../service/Api";
+import { useDebounce } from "../../hooks/useDebounce";
 
 const Movies = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [movieName, setMovieName] = useState(searchParams.get("query") || "");
+  const debouncedMovieName = useDebounce(movieName, 500);
 
   useEffect(() => {
     const search = async () => {
       try {
-        const movies = await handleSearch(movieName);
+        const movies = await handleSearch(debouncedMovieName);
         setSearchResults(movies);
       } catch (error) {
         console.error(error);
       }
     };
     search();
-  }, [movieName]);
+  }, [debouncedMovieName]);
+  console.log(searchResults);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,6 +33,7 @@ const Movies = () => {
     <>
       <form onSubmit={handleSubmit}>
         <h2>Movie Search</h2>
+
         <input
           type="text"
           value={movieName}
@@ -46,7 +50,9 @@ const Movies = () => {
             </div>
           );
         })}
-      {searchResults.length === 0 && movieName && <div>There is no film!</div>}
+      {searchResults.length === 0 && debouncedMovieName && (
+        <div>There is no film!</div>
+      )}
     </>
   );
 };
