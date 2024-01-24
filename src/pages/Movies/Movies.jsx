@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { handleSearch } from "../../service/Api";
 import { useDebounce } from "../../hooks/useDebounce";
+import Title from "../../components/Title/Title";
+import MoviesList from "../../components/MoviesList/MoviesList";
+import MoviesItem from "../../components/MoviesItem/MoviesItem";
+import SearchForm from "../../components/SearchForm/SearchForm";
 
 const Movies = () => {
   const [searchResults, setSearchResults] = useState([]);
@@ -20,7 +24,6 @@ const Movies = () => {
     };
     search();
   }, [debouncedMovieName]);
-  console.log(searchResults);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,28 +34,19 @@ const Movies = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <h2>Movie Search</h2>
+      <Title title=" Movie Search" />
+      <SearchForm
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+        value={movieName}
+      />
 
-        <input
-          type="text"
-          value={movieName}
-          onChange={(e) => handleChange(e.target.value)}
-          placeholder="type here"
-        />
-      </form>
-
-      {searchResults &&
-        searchResults.map((film) => {
-          return (
-            <div key={film.id}>
-              <Link to={`${film.id}`}>{film.title}</Link>
-            </div>
-          );
-        })}
-      {searchResults.length === 0 && debouncedMovieName && (
-        <div>There is no film!</div>
-      )}
+      <MoviesList>
+        <MoviesItem item={searchResults} />
+        {searchResults.length === 0 && debouncedMovieName && (
+          <div>There is no film!</div>
+        )}
+      </MoviesList>
     </>
   );
 };

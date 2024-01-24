@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchMovieReviews } from "../../service/Api";
+import Loader from "../Loader/Loader";
 const Reviews = () => {
   const { movieID } = useParams();
   const [reviews, setReviews] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     let subscribed = true;
     const fetchData = async () => {
-      const movie = await fetchMovieReviews(movieID);
-      setReviews(movie);
+      try {
+        setIsLoading(true);
+        const movie = await fetchMovieReviews(movieID);
+        setReviews(movie);
+        setIsLoading(false);
+      } catch (error) {}
     };
 
     fetchData();
@@ -20,6 +26,7 @@ const Reviews = () => {
 
   return (
     <>
+      {isLoading && <Loader />}
       {reviews && (
         <div>
           <h2>Movie Reviews</h2>

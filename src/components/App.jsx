@@ -22,7 +22,7 @@ const App = () => {
             <Route path="reviews" element={<Reviews />} />
             <Route path="cast" element={<Cast />} />
           </Route>
-          {/* <Route path="*" element={<Navigate to="/" />} /> */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
     </>

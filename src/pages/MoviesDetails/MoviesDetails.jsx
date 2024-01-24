@@ -29,7 +29,7 @@ const MoviesDetails = () => {
           }
           alt={movieDetails.title}
         />
-        <h1>Title : {movieDetails.title && movieDetails.title}</h1>
+        <h1>{movieDetails.title && movieDetails.title}</h1>
       </div>
       <div>
         <h3>Additional information</h3>
