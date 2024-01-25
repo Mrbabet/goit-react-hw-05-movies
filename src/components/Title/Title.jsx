@@ -6,3 +6,6 @@ const Title = ({ title }) => {
 };
 
 export default Title;
+Title.propTypes = {
+  title: propTypes.string,
+};

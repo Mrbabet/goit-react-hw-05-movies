@@ -20,3 +20,7 @@ const MoviesItem = ({ item }) => {
 };
 
 export default MoviesItem;
+
+SearchForm.propTypes = {
+  item: propTypes.array,
+};
