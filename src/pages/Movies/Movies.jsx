@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { handleSearch } from "../../service/Api";
 import { useDebounce } from "../../hooks/useDebounce";
 import Title from "../../components/Title/Title";
@@ -31,6 +31,8 @@ const Movies = () => {
   const handleChange = (value) => {
     setMovieName(value);
   };
+
+  const goBackfunc = () => {};
 
   return (
     <>
