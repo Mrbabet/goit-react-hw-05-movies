@@ -13,6 +13,11 @@ const Movies = () => {
   const [movieName, setMovieName] = useState(searchParams.get("query") || "");
   const debouncedMovieName = useDebounce(movieName, 500);
 
+  const updateQueryString = (query) => {
+    const nextParams = query !== "" && { query };
+    setSearchParams(nextParams);
+  };
+
   useEffect(() => {
     const search = async () => {
       try {
@@ -28,8 +33,9 @@ const Movies = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-  const handleChange = (value) => {
+  const handleChange = (value, query) => {
     setMovieName(value);
+    updateQueryString(query);
   };
 
   const goBackfunc = () => {};
