@@ -9,17 +9,12 @@ const MoviesDetails = () => {
   const backLinkHref = location.state?.from ?? "/";
 
   useEffect(() => {
-    let subscribed = true;
     const fetchData = async () => {
       const movie = await fetchMovieDetails(movieID);
       setMovieDetails(movie);
     };
 
     fetchData();
-
-    return () => {
-      subscribed = false;
-    };
   }, [movieID]);
 
   return (

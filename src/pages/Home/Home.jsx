@@ -8,22 +8,16 @@ const Home = () => {
   const [trending, setTrending] = useState([]);
 
   useEffect(() => {
-    let subscribed = true;
     const fetchData = async () => {
       const movies = await fetchTrendingMovies();
       setTrending(movies);
     };
     fetchData();
-
-    return () => {
-      subscribed = false;
-    };
   }, []);
 
   return (
     <>
       <Title title="Trending Movies" />
-
       <MoviesList>
         <MoviesItem item={trending} />
       </MoviesList>
