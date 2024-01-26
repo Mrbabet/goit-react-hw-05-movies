@@ -1,0 +1,1 @@
+import{r as e,j as t}from"./index-7MKXyxji.js";import{f as a}from"./Api-aYbiQ__Y.js";import{T as o,M as n,a as c}from"./Title-L3Fwc-mj.js";const j=()=>{const[s,i]=e.useState([]);return e.useEffect(()=>{(async()=>{const r=await a();i(r)})()},[]),t.jsxs(t.Fragment,{children:[t.jsx(o,{title:"Trending Movies"}),t.jsx(n,{children:t.jsx(c,{item:s})})]})};export{j as default};
