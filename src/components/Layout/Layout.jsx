@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import styles from "./Layout.module.css";
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { fetchMovieDetails } from "../../service/Api";
 import BackLink from "../../components/BackLink/BackLink";
+
 const MoviesDetails = () => {
   const [movieDetails, setMovieDetails] = useState({});
   const { movieID } = useParams();
